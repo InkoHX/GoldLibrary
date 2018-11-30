@@ -2,6 +2,6 @@ name: GoldLibrary
 antigen: InkoHX\GoldLibrary
 description: A library that can easily create a gold system
 author: InkoHX
-version: 0.0.1
+version: 0.0.2
 php:
   - 7.2
