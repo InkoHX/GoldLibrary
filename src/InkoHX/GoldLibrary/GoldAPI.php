@@ -1,4 +1,9 @@
 <?php
+/**
+ * Copyright (c) 2018 InkoHX. All rights reserved. MIT license.
+ *
+ * GitHub: https://github.com/InkoHX/GoldLibrary
+ */
 
 namespace InkoHX\GoldLibrary;
 
