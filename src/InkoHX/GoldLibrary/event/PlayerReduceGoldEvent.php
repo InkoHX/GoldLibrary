@@ -7,7 +7,6 @@
 
 namespace InkoHX\GoldLibrary\event;
 
-
 use pocketmine\event\Cancellable;
 use pocketmine\event\player\PlayerEvent;
 use pocketmine\Player;
@@ -21,7 +20,7 @@ class PlayerReduceGoldEvent extends PlayerEvent implements Cancellable
      * PlayerReduceGoldEvent constructor.
      *
      * @param Player $player
-     * @param int $gold
+     * @param int    $gold
      */
     public function __construct(Player $player, int $gold)
     {

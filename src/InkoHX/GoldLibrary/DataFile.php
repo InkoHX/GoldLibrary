@@ -7,7 +7,6 @@
 
 namespace InkoHX\GoldLibrary;
 
-
 use pocketmine\utils\Config;
 
 class DataFile
@@ -25,10 +24,10 @@ class DataFile
      */
     public function __construct(string $file)
     {
-        $this->path = GoldAPI::getPath() . $file;
+        $this->path = GoldAPI::getPath().$file;
         @mkdir($this->path, 0755, true);
-        $this->config = new Config($this->path . '/data.json', Config::JSON, [
-            'gold' => 0
+        $this->config = new Config($this->path.'/data.json', Config::JSON, [
+            'gold' => 0,
         ]);
     }
 
@@ -43,7 +42,7 @@ class DataFile
     }
 
     /**
-     * @param string $key
+     * @param string     $key
      * @param bool|mixed $data
      *
      * @return void

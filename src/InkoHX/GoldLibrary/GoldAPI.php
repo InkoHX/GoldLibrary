@@ -23,15 +23,16 @@ class GoldAPI
      */
     public static function init(): void
     {
-        self::$path = Server::getInstance()->getDataPath() . '/Library/GoldLibrary/';
+        self::$path = Server::getInstance()->getDataPath().'/Library/GoldLibrary/';
     }
 
     /**
      * @param Player $player
-     * @param int $gold
+     * @param int    $gold
+     *
+     * @throws \ReflectionException
      *
      * @return void
-     * @throws \ReflectionException
      */
     public static function setGold(Player $player, int $gold): void
     {
@@ -45,10 +46,11 @@ class GoldAPI
 
     /**
      * @param Player $player
-     * @param int $gold
+     * @param int    $gold
+     *
+     * @throws \ReflectionException
      *
      * @return void
-     * @throws \ReflectionException
      */
     public static function addGold(Player $player, int $gold): void
     {
@@ -62,10 +64,11 @@ class GoldAPI
 
     /**
      * @param Player $player
-     * @param int $gold
+     * @param int    $gold
+     *
+     * @throws \ReflectionException
      *
      * @return bool
-     * @throws \ReflectionException
      */
     public static function reduceGold(Player $player, int $gold): bool
     {
@@ -75,9 +78,11 @@ class GoldAPI
             if (self::getGold($player) > $gold) {
                 $db = new DataFile($player->getXuid());
                 $db->set('gold', self::getGold($player) - $event->getGold());
+
                 return true;
             }
         }
+
         return false;
     }
 
@@ -89,6 +94,7 @@ class GoldAPI
     public static function getGold(Player $player): int
     {
         $db = new DataFile($player->getXuid());
+
         return $db->get('gold');
     }
 

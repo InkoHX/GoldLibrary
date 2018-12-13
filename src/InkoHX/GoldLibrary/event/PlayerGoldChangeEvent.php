@@ -23,8 +23,8 @@ class PlayerGoldChangeEvent extends PlayerEvent implements Cancellable
      * PlayerGoldChangeEvent constructor.
      *
      * @param Player $player
-     * @param int $oldGold
-     * @param int $newGold
+     * @param int    $oldGold
+     * @param int    $newGold
      */
     public function __construct(Player $player, int $oldGold, int $newGold)
     {
