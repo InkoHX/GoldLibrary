@@ -25,9 +25,9 @@ class DataFile
      */
     public function __construct(string $file)
     {
-        $this->path = GoldAPI::getPath().$file;
+        $this->path = GoldAPI::getPath() . $file;
         @mkdir($this->path, 0755, true);
-        $this->config = new Config($this->path.'/data.json', Config::JSON, [
+        $this->config = new Config($this->path . '/data.json', Config::JSON, [
             'gold' => 0
         ]);
     }

@@ -23,7 +23,7 @@ class GoldAPI
      */
     public static function init(): void
     {
-        self::$path = Server::getInstance()->getDataPath().'/Library/GoldLibrary/';
+        self::$path = Server::getInstance()->getDataPath() . '/Library/GoldLibrary/';
     }
 
     /**
@@ -31,11 +31,12 @@ class GoldAPI
      * @param int $gold
      *
      * @return void
+     * @throws \ReflectionException
      */
     public static function setGold(Player $player, int $gold): void
     {
         $event = new PlayerGoldChangeEvent($player, self::getGold($player), $gold);
-        Server::getInstance()->getPluginManager()->callEvent($event);
+        $event->call();
         if (!$event->isCancelled()) {
             $db = new DataFile($player->getXuid());
             $db->set('gold', $event->getNewGold());
@@ -47,11 +48,12 @@ class GoldAPI
      * @param int $gold
      *
      * @return void
+     * @throws \ReflectionException
      */
     public static function addGold(Player $player, int $gold): void
     {
         $event = new PlayerAddGoldEvent($player, $gold);
-        Server::getInstance()->getPluginManager()->callEvent($event);
+        $event->call();
         if (!$event->isCancelled()) {
             $db = new DataFile($player->getXuid());
             $db->set('gold', self::getGold($player) + $event->getGold());
@@ -63,18 +65,17 @@ class GoldAPI
      * @param int $gold
      *
      * @return bool
+     * @throws \ReflectionException
      */
     public static function reduceGold(Player $player, int $gold): bool
     {
         $event = new PlayerReduceGoldEvent($player, $gold);
-        Server::getInstance()->getPluginManager()->callEvent($event);
+        $event->call();
         if (!$event->isCancelled()) {
             if (self::getGold($player) > $gold) {
                 $db = new DataFile($player->getXuid());
                 $db->set('gold', self::getGold($player) - $event->getGold());
                 return true;
-        } else {
-                return false;
             }
         }
         return false;

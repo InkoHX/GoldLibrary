@@ -17,6 +17,12 @@ class PlayerReduceGoldEvent extends PlayerEvent implements Cancellable
     /** @var int $gold */
     private $gold;
 
+    /**
+     * PlayerReduceGoldEvent constructor.
+     *
+     * @param Player $player
+     * @param int $gold
+     */
     public function __construct(Player $player, int $gold)
     {
         $this->player = $player;
